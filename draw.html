@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>KUJI POP - 뽑기</title>
+
+  <link rel="stylesheet" href="css/common.css" />
+  <link rel="stylesheet" href="css/draw.css" />
+</head>
+
+<body>
+
+  <header class="draw-header">
+
+    <a
+      href="index.html"
+      class="logo"
+    >
+      KUJI
+      <span>POP</span>
+    </a>
+
+    <strong>
+      KUJI DRAW
+    </strong>
+
+    <span></span>
+
+  </header>
+
+
+
+  <main class="draw-page">
+
+    <section class="draw-intro">
+
+      <span class="section-eyebrow">
+        GOOD LUCK!
+      </span>
+
+      <h1>
+        티켓을 눌러
+        <br />
+        결과를 확인하세요
+      </h1>
+
+      <p id="drawProgress">
+        1 / 1
+      </p>
+
+    </section>
+
+
+
+    <section class="ticket-area">
+
+      <div
+        class="ticket"
+        id="ticket"
+      >
+
+        <div class="ticket-inner">
+
+
+          <!-- 티켓 앞 -->
+
+          <div class="ticket-front">
+
+            <span class="ticket-label">
+              ONLINE KUJI
+            </span>
+
+            <strong>
+              ?
+            </strong>
+
+            <p>
+              TAP TO OPEN
+            </p>
+
+          </div>
+
+
+
+          <!-- 티켓 뒤 -->
+
+          <div class="ticket-back">
+
+            <span
+              class="result-rank"
+              id="resultRank"
+            >
+              A
+            </span>
+
+
+            <div
+              class="result-emoji"
+              id="resultEmoji"
+            >
+              🧸
+            </div>
+
+
+            <h2 id="resultName">
+              빅 사이즈 인형
+            </h2>
+
+
+            <p>
+              축하합니다!
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <button
+        type="button"
+        class="next-draw-button"
+        id="nextDrawButton"
+      >
+        다음 결과 보기
+      </button>
+
+    </section>
+
+
+
+    <section
+      class="result-summary"
+      id="resultSummary"
+    >
+
+      <span class="section-eyebrow">
+        RESULT
+      </span>
+
+      <h2>
+        뽑기 결과
+      </h2>
+
+
+      <div
+        class="result-list"
+        id="resultList"
+      >
+      </div>
+
+
+      <button
+        type="button"
+        class="return-button"
+        id="returnDetailButton"
+      >
+        상품 상세로 돌아가기
+      </button>
+
+    </section>
+
+  </main>
+
+
+
+  <script
+    type="module"
+    src="js/draw.js"
+  >
+  </script>
+
+</body>
+</html>

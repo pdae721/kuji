@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>KUJI POP</title>
+
+  <!-- 공통 스타일 -->
+  <link rel="stylesheet" href="css/common.css" />
+
+  <!-- 홈 전용 스타일 -->
+  <link rel="stylesheet" href="css/home.css" />
+</head>
+
+<body>
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+
+  <header class="site-header">
+
+    <div class="header-inner">
+
+      <!-- 로고 -->
+      <a href="index.html" class="logo">
+        KUJI
+        <span>POP</span>
+      </a>
+
+
+      <!-- 메뉴 -->
+      <nav class="main-nav">
+
+        <a href="#saleSection">
+          판매중
+        </a>
+
+        <a href="#">
+          이용방법
+        </a>
+
+        <a href="#">
+          공지사항
+        </a>
+
+        <a href="#">
+          마이페이지
+        </a>
+
+      </nav>
+
+
+      <!-- 우측 -->
+      <div class="header-actions">
+
+        <button
+          type="button"
+          class="search-button"
+          aria-label="검색"
+        >
+          🔍
+        </button>
+
+        <button
+          type="button"
+          class="login-button"
+        >
+          로그인
+        </button>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- =========================
+       MAIN
+  ========================== -->
+
+  <main>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero-section">
+
+      <div class="hero-content">
+
+        <span class="hero-eyebrow">
+          ONLINE CHARACTER KUJI
+        </span>
+
+        <h1>
+          열어보기 전까지
+          <br />
+          알 수 없는 즐거움.
+        </h1>
+
+        <p>
+          원하는 쿠지를 골라
+          온라인으로 바로 뽑아보세요.
+        </p>
+
+        <a
+          href="#saleSection"
+          class="hero-cta"
+        >
+          판매중인 쿠지 보기
+        </a>
+
+      </div>
+
+
+      <!-- 오른쪽 장식 -->
+      <div
+        class="hero-visual"
+        aria-hidden="true"
+      >
+
+        <div class="hero-ticket ticket-a">
+          <span>A</span>
+        </div>
+
+        <div class="hero-ticket ticket-b">
+          <span>B</span>
+        </div>
+
+        <div class="hero-ticket ticket-c">
+          <span>C</span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         NOTICE
+    ========================== -->
+
+    <section class="notice-section">
+
+      <div class="notice-badge">
+        NOTICE
+      </div>
+
+      <p>
+        인기 상품은 판매 시작 직후 접속이 몰릴 수 있습니다.
+      </p>
+
+      <button type="button">
+        자세히 보기
+      </button>
+
+    </section>
+
+
+
+    <!-- =========================
+         NOW ON SALE
+    ========================== -->
+
+    <section
+      class="sale-section"
+      id="saleSection"
+    >
+
+      <div class="section-heading">
+
+        <div>
+
+          <span class="section-eyebrow">
+            NOW ON SALE
+          </span>
+
+          <h2>
+            판매 중인 쿠지
+          </h2>
+
+        </div>
+
+
+        <button
+          type="button"
+          class="view-all-button"
+        >
+          전체보기
+        </button>
+
+      </div>
+
+
+
+      <!-- =========================
+           PRODUCT GRID
+      ========================== -->
+
+      <div class="kuji-grid">
+
+
+        <!-- =========================
+             PRODUCT 1
+        ========================== -->
+
+        <article class="kuji-card">
+
+          <div class="kuji-image pink">
+
+            <span class="sale-badge">
+              판매중
+            </span>
+
+            <div class="placeholder-character">
+              ★
+            </div>
+
+          </div>
+
+
+          <div class="kuji-content">
+
+            <span class="kuji-category">
+              CHARACTER KUJI
+            </span>
+
+            <h3>
+              몽글몽글 친구들
+              <br />
+              Sweet Party
+            </h3>
+
+
+            <div class="kuji-meta">
+
+              <div>
+
+                <span>
+                  1회
+                </span>
+
+                <strong>
+                  8,000원
+                </strong>
+
+              </div>
+
+
+              <div>
+
+                <span>
+                  남은 수량
+                </span>
+
+                <strong>
+                  42 / 80
+                </strong>
+
+              </div>
+
+            </div>
+
+
+            <div class="stock-bar">
+
+              <div
+                class="stock-fill"
+                style="width: 52.5%;"
+              >
+              </div>
+
+            </div>
+
+
+            <button
+              type="button"
+              class="draw-button"
+              data-kuji-id="sweet-party"
+            >
+              쿠지 보러가기
+            </button>
+
+          </div>
+
+        </article>
+
+
+
+        <!-- =========================
+             PRODUCT 2
+        ========================== -->
+
+        <article class="kuji-card">
+
+          <div class="kuji-image blue">
+
+            <span class="sale-badge hot">
+              인기
+            </span>
+
+            <div class="placeholder-character">
+              ♡
+            </div>
+
+          </div>
+
+
+          <div class="kuji-content">
+
+            <span class="kuji-category">
+              CHARACTER KUJI
+            </span>
+
+            <h3>
+              포근한 하루
+              <br />
+              Room Collection
+            </h3>
+
+
+            <div class="kuji-meta">
+
+              <div>
+
+                <span>
+                  1회
+                </span>
+
+                <strong>
+                  9,000원
+                </strong>
+
+              </div>
+
+
+              <div>
+
+                <span>
+                  남은 수량
+                </span>
+
+                <strong>
+                  14 / 80
+                </strong>
+
+              </div>
+
+            </div>
+
+
+            <div class="stock-bar">
+
+              <div
+                class="stock-fill low"
+                style="width: 17.5%;"
+              >
+              </div>
+
+            </div>
+
+
+            <button
+              type="button"
+              class="draw-button"
+              data-kuji-id="room-collection"
+            >
+              쿠지 보러가기
+            </button>
+
+          </div>
+
+        </article>
+
+
+
+        <!-- =========================
+             PRODUCT 3
+        ========================== -->
+
+        <article class="kuji-card">
+
+          <div class="kuji-image yellow">
+
+            <span class="sale-badge">
+              판매중
+            </span>
+
+            <div class="placeholder-character">
+              ☀
+            </div>
+
+          </div>
+
+
+          <div class="kuji-content">
+
+            <span class="kuji-category">
+              CHARACTER KUJI
+            </span>
+
+            <h3>
+              작은 숲의 친구들
+              <br />
+              Picnic Day
+            </h3>
+
+
+            <div class="kuji-meta">
+
+              <div>
+
+                <span>
+                  1회
+                </span>
+
+                <strong>
+                  7,500원
+                </strong>
+
+              </div>
+
+
+              <div>
+
+                <span>
+                  남은 수량
+                </span>
+
+                <strong>
+                  63 / 80
+                </strong>
+
+              </div>
+
+            </div>
+
+
+            <div class="stock-bar">
+
+              <div
+                class="stock-fill"
+                style="width: 78.75%;"
+              >
+              </div>
+
+            </div>
+
+
+            <button
+              type="button"
+              class="draw-button"
+              data-kuji-id="picnic-day"
+            >
+              쿠지 보러가기
+            </button>
+
+          </div>
+
+        </article>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         HOW TO USE
+    ========================== -->
+
+    <section class="how-section">
+
+      <div class="section-heading">
+
+        <div>
+
+          <span class="section-eyebrow">
+            HOW TO PLAY
+          </span>
+
+          <h2>
+            이용 방법
+          </h2>
+
+        </div>
+
+      </div>
+
+
+      <div class="how-grid">
+
+        <article class="how-card">
+
+          <span class="how-number">
+            01
+          </span>
+
+          <div class="how-icon">
+            🎁
+          </div>
+
+          <h3>
+            쿠지 선택
+          </h3>
+
+          <p>
+            원하는 상품과
+            남은 경품을 확인합니다.
+          </p>
+
+        </article>
+
+
+        <article class="how-card">
+
+          <span class="how-number">
+            02
+          </span>
+
+          <div class="how-icon">
+            🎟
+          </div>
+
+          <h3>
+            횟수 선택
+          </h3>
+
+          <p>
+            1회, 3회, 5회 등
+            원하는 횟수를 선택합니다.
+          </p>
+
+        </article>
+
+
+        <article class="how-card">
+
+          <span class="how-number">
+            03
+          </span>
+
+          <div class="how-icon">
+            ✨
+          </div>
+
+          <h3>
+            결과 확인
+          </h3>
+
+          <p>
+            티켓을 열고
+            당첨된 경품을 확인합니다.
+          </p>
+
+        </article>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer class="site-footer">
+
+    <div class="footer-inner">
+
+      <div>
+
+        <a href="index.html" class="footer-logo">
+          KUJI POP
+        </a>
+
+        <p>
+          AWS 기반 온라인 쿠지 프로젝트
+        </p>
+
+      </div>
+
+
+      <div class="footer-links">
+
+        <a href="#">
+          이용약관
+        </a>
+
+        <a href="#">
+          개인정보처리방침
+        </a>
+
+        <a href="#">
+          문의
+        </a>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- 홈 전용 JS -->
+  <script
+    type="module"
+    src="js/home.js"
+  >
+  </script>
+
+</body>
+</html>
