@@ -8,6 +8,7 @@ html {
 
 body {
   margin: 0;
+
   font-family:
     Pretendard,
     -apple-system,
@@ -33,31 +34,26 @@ a {
   color: inherit;
 }
 
-/* =========================
-   공통 헤더
-========================= */
-
 .site-header {
   height: 72px;
 
   position: sticky;
   top: 0;
 
-  background: rgba(255, 255, 255, 0.96);
+  z-index: 1000;
 
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(255, 255, 255, 0.96);
 
   border-bottom: 1px solid #ececec;
 
-  z-index: 1000;
+  backdrop-filter: blur(15px);
 }
 
 .header-inner {
   max-width: 1200px;
   height: 100%;
 
-  margin: 0 auto;
+  margin: auto;
   padding: 0 24px;
 
   display: flex;
@@ -65,8 +61,6 @@ a {
 
   gap: 40px;
 }
-
-/* 로고 */
 
 .logo {
   text-decoration: none;
@@ -77,59 +71,35 @@ a {
   font-weight: 900;
 
   letter-spacing: -1.7px;
-
-  white-space: nowrap;
 }
 
 .logo span {
   color: #ff3159;
 }
 
-/* 메뉴 */
-
 .main-nav {
   flex: 1;
 
   display: flex;
-  align-items: center;
 
-  gap: 30px;
+  gap: 28px;
 }
 
 .main-nav a {
   text-decoration: none;
 
-  color: #4b4b4b;
+  color: #444;
 
   font-size: 14px;
-  font-weight: 650;
-
-  transition: color 0.15s;
+  font-weight: 700;
 }
 
 .main-nav a:hover {
   color: #ff3159;
 }
 
-/* 헤더 오른쪽 */
-
 .header-actions {
-  display: flex;
-  align-items: center;
-
-  gap: 8px;
-}
-
-.search-button {
-  width: 40px;
-  height: 40px;
-
-  border: none;
-  border-radius: 50%;
-
-  background: #f3f3f3;
-
-  font-size: 16px;
+  margin-left: auto;
 }
 
 .login-button {
@@ -137,7 +107,7 @@ a {
 
   padding: 0 18px;
 
-  border: none;
+  border: 0;
   border-radius: 22px;
 
   background: #222;
@@ -147,10 +117,6 @@ a {
   font-size: 13px;
   font-weight: 800;
 }
-
-/* =========================
-   공통 섹션
-========================= */
 
 .section-heading {
   display: flex;
@@ -178,10 +144,6 @@ a {
   letter-spacing: -1.4px;
 }
 
-/* =========================
-   FOOTER
-========================= */
-
 .site-footer {
   padding: 50px 24px;
 
@@ -193,28 +155,19 @@ a {
 .footer-inner {
   max-width: 1200px;
 
-  margin: 0 auto;
+  margin: auto;
 
   display: flex;
 
   justify-content: space-between;
-  align-items: flex-start;
-
-  gap: 30px;
 }
 
 .footer-logo {
-  text-decoration: none;
-
   font-size: 21px;
   font-weight: 900;
-
-  letter-spacing: -1px;
 }
 
 .footer-inner p {
-  margin: 9px 0 0;
-
   color: #999;
 
   font-size: 12px;
@@ -227,57 +180,25 @@ a {
 }
 
 .footer-links a {
-  text-decoration: none;
-
   color: #bbb;
+
+  text-decoration: none;
 
   font-size: 12px;
 }
 
-/* =========================
-   MOBILE
-========================= */
-
 @media (max-width: 760px) {
-  .site-header {
-    height: 64px;
+
+  .main-nav {
+    display: none;
   }
 
   .header-inner {
     padding: 0 16px;
-
-    gap: 12px;
   }
 
   .logo {
     font-size: 23px;
   }
 
-  .main-nav {
-    display: none;
-  }
-
-  .header-actions {
-    margin-left: auto;
-  }
-
-  .search-button {
-    display: none;
-  }
-
-  .login-button {
-    height: 36px;
-
-    padding: 0 14px;
-
-    font-size: 12px;
-  }
-
-  .footer-inner {
-    flex-direction: column;
-  }
-
-  .footer-links {
-    flex-wrap: wrap;
-  }
 }

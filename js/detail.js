@@ -1,14 +1,8 @@
-/*
-=================================================
-KUJI POP
-detail.js
-=================================================
-*/
-
 import {
     getKujiDetail
 }
 from "./api.js";
+import { renderProductImage } from "./images.js";
 
 
 let currentKuji = null;
@@ -16,11 +10,6 @@ let currentKuji = null;
 let selectedCount = 1;
 
 
-/*
-=================================================
-URL에서 상품 ID 읽기
-=================================================
-*/
 
 function getKujiId() {
 
@@ -37,11 +26,6 @@ function getKujiId() {
 }
 
 
-/*
-=================================================
-상세 초기화
-=================================================
-*/
 
 async function initializeDetail() {
 
@@ -51,12 +35,8 @@ async function initializeDetail() {
 
     if (!kujiId) {
 
-        alert(
-            "상품 정보가 없습니다."
-        );
-
         window.location.href =
-            "index.html";
+            "/";
 
         return;
 
@@ -71,7 +51,7 @@ async function initializeDetail() {
             );
 
 
-        renderKujiDetail();
+        renderDetail();
 
         setupCountButtons();
 
@@ -81,57 +61,49 @@ async function initializeDetail() {
 
     catch (error) {
 
-        console.error(
-            error
+        alert(
+            error.message
         );
 
-        alert(
-            "상품 정보를 불러오지 못했습니다."
-        );
+        window.location.href =
+            "/";
 
     }
 
 }
 
 
-/*
-=================================================
-상품 정보 화면 출력
-=================================================
-*/
 
-function renderKujiDetail() {
+function renderDetail() {
 
-    const remainingCount =
-        document.getElementById(
-            "remainingCount"
-        );
+    document.getElementById(
+        "kujiTitle"
+    ).textContent =
+        currentKuji.title;
 
 
-    const totalPrice =
-        document.getElementById(
-            "totalPrice"
-        );
-
-
-    const stockValue =
-        document.getElementById(
-            "detailStockValue"
-        );
-
-
-    remainingCount.textContent =
-        currentKuji.remainingStock;
-
-
-    totalPrice.textContent =
+    document.getElementById(
+        "pricePerDraw"
+    ).textContent =
         currentKuji.price
             .toLocaleString()
         +
         "원";
 
 
-    const stockPercentage =
+    document.getElementById(
+        "remainingCount"
+    ).textContent =
+        currentKuji.remainingStock;
+
+
+    document.getElementById(
+        "totalStockText"
+    ).textContent =
+        `/ ${currentKuji.totalStock}`;
+
+
+    const percentage =
         (
             currentKuji.remainingStock
             /
@@ -141,17 +113,115 @@ function renderKujiDetail() {
         100;
 
 
-    stockValue.style.width =
-        `${stockPercentage}%`;
+    document.getElementById(
+        "detailStockValue"
+    ).style.width =
+        `${percentage}%`;
+
+
+    renderProductImage(document.getElementById("mainPrizeImage"), currentKuji);
+
+
+    renderPrizes();
+
+    updateCountButtons();
+
+    updatePrice();
 
 }
 
 
-/*
-=================================================
-뽑기 횟수
-=================================================
-*/
+
+function renderPrizes() {
+
+    const list =
+        document.getElementById(
+            "prizeList"
+        );
+
+
+    list.innerHTML =
+        "";
+
+
+    currentKuji.prizes.forEach(
+        function(prize) {
+
+            const item =
+                document.createElement(
+                    "article"
+                );
+
+
+            item.className =
+                "prize-item";
+
+
+            item.innerHTML = `
+
+                <div
+                    class="
+                        prize-rank
+                        rank-${prize.rank.toLowerCase()}
+                    "
+                >
+                    ${prize.rank}
+                </div>
+
+
+                <div
+                    class="prize-image"
+                >
+                    ${prize.emoji}
+                </div>
+
+
+                <div
+                    class="prize-info"
+                >
+
+                    <strong>
+                        ${prize.rank}상
+                    </strong>
+
+                    <h3>
+                        ${prize.name}
+                    </h3>
+
+                    <p>
+                        현재 재고 기준
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="prize-stock"
+                >
+                    <span>
+                        남음
+                    </span>
+
+                    <strong>
+                        ${prize.remaining}
+                    </strong>
+                </div>
+
+            `;
+
+
+            renderProductImage(item.querySelector(".prize-image"), prize, { lazy: true });
+
+            list.appendChild(
+                item
+            );
+
+        }
+    );
+
+}
+
+
 
 function setupCountButtons() {
 
@@ -167,6 +237,15 @@ function setupCountButtons() {
             button.addEventListener(
                 "click",
                 function() {
+
+                    if (
+                        button.disabled
+                    ) {
+
+                        return;
+
+                    }
+
 
                     buttons.forEach(
                         function(btn) {
@@ -201,18 +280,62 @@ function setupCountButtons() {
 }
 
 
-/*
-=================================================
-가격
-=================================================
-*/
+
+function updateCountButtons() {
+
+    const buttons =
+        document.querySelectorAll(
+            ".count-button"
+        );
+
+
+    buttons.forEach(
+        function(button) {
+
+            const count =
+                Number(
+                    button.dataset.count
+                );
+
+
+            button.disabled =
+                count
+                >
+                currentKuji.remainingStock;
+
+        }
+    );
+
+
+    if (
+        selectedCount
+        >
+        currentKuji.remainingStock
+    ) {
+
+        selectedCount =
+            1;
+
+    }
+
+}
+
+
 
 function updatePrice() {
 
-    const totalPrice =
-        document.getElementById(
-            "totalPrice"
-        );
+    const total =
+        currentKuji.price
+        *
+        selectedCount;
+
+
+    document.getElementById(
+        "totalPrice"
+    ).textContent =
+        total.toLocaleString()
+        +
+        "원";
 
 
     const drawButton =
@@ -221,16 +344,25 @@ function updatePrice() {
         );
 
 
-    const price =
-        currentKuji.price
-        *
-        selectedCount;
+    if (
+        currentKuji.remainingStock
+        ===
+        0
+    ) {
+
+        drawButton.disabled =
+            true;
+
+        drawButton.textContent =
+            "품절";
+
+        return;
+
+    }
 
 
-    totalPrice.textContent =
-        price.toLocaleString()
-        +
-        "원";
+    drawButton.disabled =
+        false;
 
 
     drawButton.textContent =
@@ -239,49 +371,21 @@ function updatePrice() {
 }
 
 
-/*
-=================================================
-뽑기 버튼
-=================================================
-*/
 
 function setupDrawButton() {
 
-    const drawButton =
+    const button =
         document.getElementById(
             "detailDrawButton"
         );
 
 
-    drawButton.addEventListener(
+    button.addEventListener(
         "click",
         function() {
 
-            /*
-            아직 추첨 안 함.
-
-            draw.html로
-            상품 ID와 횟수만 전달
-            */
-
-
-            if (
-                selectedCount
-                >
-                currentKuji.remainingStock
-            ) {
-
-                alert(
-                    "남은 쿠지가 부족합니다."
-                );
-
-                return;
-
-            }
-
-
             window.location.href =
-                `draw.html?id=${currentKuji.id}&count=${selectedCount}`;
+                `/draw.html?id=${currentKuji.id}&count=${selectedCount}`;
 
         }
     );
@@ -289,35 +393,18 @@ function setupDrawButton() {
 }
 
 
-/*
-=================================================
-뒤로가기
-=================================================
-*/
 
-const backButton =
-    document.getElementById(
-        "detailBack"
-    );
+document.getElementById(
+    "detailBack"
+).addEventListener(
+    "click",
+    function() {
 
+        window.location.href =
+            "/";
 
-if (backButton) {
+    }
+);
 
-    backButton.addEventListener(
-        "click",
-        function() {
-
-            window.location.href =
-                "index.html";
-
-        }
-    );
-
-}
-
-
-/*
-실행
-*/
 
 initializeDetail();

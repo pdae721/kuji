@@ -1,88 +1,123 @@
 .detail-page {
   max-width: 1100px;
-  margin: 0 auto;
+
+  margin: auto;
+
   padding: 40px 24px 100px;
 }
 
 .back-button {
-  border: none;
-  background: none;
-  font-size: 14px;
-  color: #666;
-  cursor: pointer;
   margin-bottom: 20px;
+
+  border: 0;
+
+  background: none;
+
+  color: #666;
 }
 
 .detail-top {
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
+
+  grid-template-columns: 1.05fr 1fr;
+
   gap: 30px;
 }
 
 .detail-image-area {
-  min-height: 420px;
-  border-radius: 28px;
-  background: linear-gradient(135deg, #ffdce4, #fff0c8);
+  min-height: 430px;
+
   position: relative;
+  overflow: hidden;
+
   display: flex;
-  justify-content: center;
+
   align-items: center;
+  justify-content: center;
+
+  border-radius: 28px;
+
+  background: linear-gradient(145deg, #ffdce4, #fff0c9);
 }
 
 .main-prize-image {
-  font-size: 140px;
-  color: white;
+  width: 100%;
+  aspect-ratio: 1 / 1.15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 150px;
+}
+
+.main-prize-image img,
+.prize-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .sale-badge {
   position: absolute;
-  top: 18px;
-  left: 18px;
+
+  top: 20px;
+  left: 20px;
+
   padding: 8px 14px;
-  border-radius: 999px;
+
+  border-radius: 20px;
+
   background: #222;
+
   color: white;
-  font-size: 12px;
-  font-weight: 800;
+
+  font-size: 11px;
+  font-weight: 900;
 }
 
 .detail-info {
-  background: white;
-  border-radius: 24px;
   padding: 32px;
+
+  border-radius: 24px;
+
+  background: white;
 }
 
 .detail-category {
   color: #ff3159;
+
   font-size: 11px;
   font-weight: 900;
+
   letter-spacing: 1.5px;
 }
 
 .detail-info h1 {
   margin: 10px 0 14px;
-  font-size: 34px;
-  line-height: 1.25;
+
+  font-size: 30px;
+
+  line-height: 1.35;
 }
 
 .detail-description {
   color: #777;
+
   font-size: 14px;
+
   line-height: 1.7;
 }
 
 .detail-price-row {
   margin-top: 25px;
   padding: 20px 0;
+
+  display: flex;
+
+  justify-content: space-between;
+
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.detail-price-row span {
-  color: #777;
 }
 
 .detail-price-row strong {
@@ -90,86 +125,88 @@
 }
 
 .detail-stock {
-  margin-top: 24px;
+  margin-top: 25px;
 }
 
 .stock-text {
   display: flex;
+
   justify-content: space-between;
   align-items: flex-end;
 }
 
 .stock-text > div {
   display: flex;
+
   align-items: flex-end;
+
   gap: 10px;
+}
+
+.stock-text strong {
+  color: #ff3159;
+
+  font-size: 32px;
 }
 
 .stock-text span {
   color: #777;
+
   font-size: 13px;
 }
 
-.stock-text strong {
-  font-size: 32px;
-  color: #ff3159;
-}
-
 .stock-bar {
-  margin-top: 12px;
   height: 10px;
-  border-radius: 999px;
-  background: #eee;
+
+  margin-top: 12px;
+
   overflow: hidden;
+
+  border-radius: 20px;
+
+  background: #eee;
 }
 
 .stock-fill {
   height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(90deg, #ff3159, #ff6c85);
+
+  background: linear-gradient(90deg, #ff3159, #ff6983);
+
+  transition: width 0.3s;
 }
 
 .prize-section,
 .draw-option-section {
   margin-top: 30px;
-  background: white;
-  border-radius: 24px;
   padding: 30px;
-}
 
-.section-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  margin-bottom: 20px;
-}
+  border-radius: 24px;
 
-.section-eyebrow {
-  color: #ff3159;
-  font-size: 10px;
-  font-weight: 900;
-  letter-spacing: 2px;
-}
-
-.section-heading h2,
-.draw-option-section h2 {
-  margin: 6px 0 0;
-  font-size: 28px;
+  background: white;
 }
 
 .prize-list {
   display: flex;
+
   flex-direction: column;
+
   gap: 12px;
 }
 
 .prize-item {
   min-height: 110px;
-  display: grid;
-  grid-template-columns: 55px 90px 1fr 70px;
-  gap: 14px;
-  align-items: center;
+
   padding: 14px;
+
+  display: grid;
+
+  grid-template-columns:
+    55px 80px 1fr 70px;
+
+  align-items: center;
+
+  gap: 14px;
+
   border: 1px solid #eee;
   border-radius: 16px;
 }
@@ -177,11 +214,16 @@
 .prize-rank {
   width: 46px;
   height: 46px;
-  border-radius: 12px;
+
   display: flex;
-  justify-content: center;
+
   align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
   color: white;
+
   font-weight: 900;
 }
 
@@ -190,7 +232,7 @@
 }
 
 .rank-b {
-  background: #5c9ce8;
+  background: #599ee8;
 }
 
 .rank-c {
@@ -205,35 +247,34 @@
   background: #ec9c50;
 }
 
-.rank-last {
-  background: linear-gradient(#c89f2b, #8c6810);
-  font-size: 10px;
-}
-
 .prize-image {
-  width: 78px;
-  height: 78px;
-  border-radius: 14px;
-  background: #f5f5f5;
+  width: 70px;
+  height: 70px;
+
   display: flex;
+
   justify-content: center;
   align-items: center;
-  font-size: 38px;
-}
 
-.prize-info strong {
-  color: #ff3159;
-  font-size: 11px;
+  border-radius: 15px;
+  overflow: hidden;
+
+  background: #f4f4f4;
+
+  font-size: 36px;
 }
 
 .prize-info h3 {
-  margin: 4px 0;
+  margin: 3px 0;
+
   font-size: 16px;
 }
 
 .prize-info p {
   margin: 0;
+
   color: #888;
+
   font-size: 12px;
 }
 
@@ -243,95 +284,123 @@
 
 .prize-stock span {
   display: block;
+
   color: #888;
+
   font-size: 10px;
 }
 
 .prize-stock strong {
-  font-size: 22px;
+  font-size: 21px;
 }
 
-.last-one {
-  background: linear-gradient(135deg, #fff9df, #fff0a9);
-  border-color: #f0d66f;
+.draw-option-section h2 {
+  margin-top: 0;
 }
 
 .draw-count {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
   margin-top: 20px;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 10px;
 }
 
 .count-button {
   height: 52px;
+
   border: 1px solid #ddd;
   border-radius: 12px;
+
   background: white;
-  font-weight: 700;
-  cursor: pointer;
+
+  font-weight: 800;
 }
 
 .count-button.active {
-  border: 2px solid #ff3159;
-  background: #fff1f4;
   color: #ff3159;
+
+  border: 2px solid #ff3159;
+
+  background: #fff1f4;
+}
+
+.count-button:disabled {
+  opacity: 0.35;
+
+  cursor: not-allowed;
 }
 
 .payment-row {
   margin-top: 25px;
   padding-top: 20px;
-  border-top: 1px solid #eee;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
-.payment-row span {
-  color: #777;
+  display: flex;
+
+  justify-content: space-between;
+
+  border-top: 1px solid #eee;
 }
 
 .payment-row strong {
-  font-size: 26px;
+  font-size: 25px;
 }
 
 .detail-draw-button {
   width: 100%;
   height: 58px;
+
   margin-top: 20px;
-  border: none;
+
+  border: 0;
   border-radius: 14px;
-  background: linear-gradient(90deg, #ff3159, #ff5574);
+
+  background: #ff3159;
+
   color: white;
+
   font-size: 17px;
   font-weight: 900;
-  cursor: pointer;
+}
+
+.detail-draw-button:disabled {
+  background: #aaa;
+
+  cursor: not-allowed;
 }
 
 @media (max-width: 800px) {
+
   .detail-top {
     grid-template-columns: 1fr;
   }
 
-  .detail-image-area {
-    min-height: 300px;
-  }
-
   .prize-item {
-    grid-template-columns: 45px 65px 1fr;
-  }
-
-  .prize-stock {
-    display: none;
+    grid-template-columns:
+      45px 60px 1fr;
   }
 
   .prize-image {
     width: 60px;
     height: 60px;
-    font-size: 28px;
+  }
+
+  .prize-stock {
+    grid-column: 3;
+    text-align: left;
+  }
+
+  .prize-stock span {
+    display: inline;
+    margin-right: 6px;
   }
 
   .draw-count {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns:
+      1fr 1fr;
   }
+
 }

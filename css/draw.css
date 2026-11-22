@@ -1,48 +1,57 @@
 body {
-  background: linear-gradient(145deg, #fff2f5, #fff8df);
+  min-height: 100vh;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fff1f5,
+      #fff9df
+    );
 }
 
 .draw-header {
   height: 70px;
+
   padding: 0 24px;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(18px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+
+  grid-template-columns:
+    1fr auto 1fr;
+
   align-items: center;
+
+  background: rgba(255, 255, 255, 0.94);
+
+  border-bottom: 1px solid #eee;
 }
 
-.draw-header > strong {
+.draw-header strong {
   font-size: 13px;
-  letter-spacing: 1.5px;
-}
 
-.draw-header .logo {
-  justify-self: start;
+  letter-spacing: 1.5px;
 }
 
 .draw-page {
   max-width: 760px;
-  margin: 0 auto;
-  padding: 60px 20px 100px;
-  text-align: center;
-}
 
-.draw-intro .section-eyebrow {
-  color: #ff3159;
+  margin: auto;
+
+  padding: 60px 20px 100px;
+
+  text-align: center;
 }
 
 .draw-intro h1 {
   margin: 8px 0;
+
   font-size: 38px;
+
   line-height: 1.2;
 }
 
 .draw-intro p {
   color: #888;
-  font-size: 13px;
 }
 
 .ticket-area {
@@ -52,17 +61,31 @@ body {
 .ticket {
   width: 290px;
   height: 400px;
+
   margin: 0 auto 30px;
+
   perspective: 1200px;
+
   cursor: pointer;
 }
 
 .ticket-inner {
   width: 100%;
   height: 100%;
+
   position: relative;
+
   transform-style: preserve-3d;
-  transition: transform 0.75s cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  transition:
+    transform
+    0.75s
+    cubic-bezier(
+      0.2,
+      0.7,
+      0.2,
+      1
+    );
 }
 
 .ticket.open .ticket-inner {
@@ -72,113 +95,143 @@ body {
 .ticket-front,
 .ticket-back {
   position: absolute;
+
   inset: 0;
-  border-radius: 24px;
-  backface-visibility: hidden;
+
   overflow: hidden;
 
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.14);
+  border-radius: 24px;
+
+  backface-visibility: hidden;
+
+  box-shadow:
+    0 25px 60px
+    rgba(0, 0, 0, 0.15);
 }
 
 .ticket-front {
-  border: 7px solid white;
-  background: repeating-linear-gradient(
-    45deg,
-    #ff3159,
-    #ff3159 16px,
-    #ff4969 16px,
-    #ff4969 32px
-  );
-
-  color: white;
-
   display: flex;
+
   flex-direction: column;
+
   justify-content: center;
   align-items: center;
+
+  border: 7px solid white;
+
+  background:
+    repeating-linear-gradient(
+      45deg,
+      #ff3159,
+      #ff3159 16px,
+      #ff4c6b 16px,
+      #ff4c6b 32px
+    );
+
+  color: white;
 }
 
 .ticket-front::before {
   content: "";
+
   position: absolute;
+
   inset: 18px;
+
   border: 2px dashed rgba(255, 255, 255, 0.7);
+
   border-radius: 16px;
 }
 
-.ticket-label {
+.ticket-label,
+.ticket-front strong,
+.ticket-front p {
   position: relative;
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 2px;
 }
 
 .ticket-front strong {
-  position: relative;
-  font-size: 115px;
-  line-height: 1;
-  margin: 24px 0;
-}
+  margin: 20px;
 
-.ticket-front p {
-  position: relative;
-  font-size: 11px;
-  letter-spacing: 2px;
+  font-size: 115px;
 }
 
 .ticket-back {
-  transform: rotateY(180deg);
-  background: white;
-  border: 6px solid #ff3159;
   padding: 30px;
 
+  transform: rotateY(180deg);
+
   display: flex;
+
   flex-direction: column;
-  justify-content: center;
+
   align-items: center;
+  justify-content: center;
+
+  background: white;
+
+  border: 6px solid #ff3159;
 }
 
 .result-rank {
   width: 90px;
   height: 90px;
-  border-radius: 25px;
-  background: #ff3159;
-  color: white;
-  font-size: 48px;
-  font-weight: 900;
 
   display: flex;
+
   justify-content: center;
   align-items: center;
+
+  border-radius: 25px;
+
+  background: #ff3159;
+
+  color: white;
+
+  font-size: 48px;
+  font-weight: 900;
 }
 
 .result-emoji {
-  font-size: 78px;
-  margin: 18px 0 6px;
+  margin: 18px 0 8px;
+
+  font-size: 76px;
+}
+
+.result-emoji img {
+  display: block;
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
 }
 
 .ticket-back h2 {
-  margin: 8px 0;
-  font-size: 22px;
+  margin: 5px 0;
+
+  font-size: 21px;
 }
 
 .ticket-back p {
   color: #ff3159;
-  font-size: 14px;
+
   font-weight: 800;
 }
 
 .next-draw-button {
   display: none;
+
   width: 290px;
   height: 52px;
-  margin: 0 auto;
-  border: none;
+
+  margin: auto;
+
+  border: 0;
   border-radius: 14px;
+
   background: #222;
+
   color: white;
+
   font-weight: 800;
-  cursor: pointer;
 }
 
 .next-draw-button.active {
@@ -187,35 +240,45 @@ body {
 
 .result-summary {
   display: none;
+
   margin-top: 50px;
   padding: 30px;
-  background: white;
-  border-radius: 24px;
+
   text-align: left;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+
+  border-radius: 24px;
+
+  background: white;
+
+  box-shadow:
+    0 15px 40px
+    rgba(0, 0, 0, 0.08);
 }
 
 .result-summary.active {
   display: block;
 }
 
-.result-summary h2 {
-  margin: 6px 0 20px;
-}
-
 .result-list {
   display: flex;
+
   flex-direction: column;
+
   gap: 10px;
 }
 
 .result-item {
+  padding: 12px;
+
   display: grid;
-  grid-template-columns: 45px 55px 1fr;
-  gap: 12px;
+
+  grid-template-columns:
+    45px 55px 1fr;
+
   align-items: center;
 
-  padding: 12px;
+  gap: 12px;
+
   border: 1px solid #eee;
   border-radius: 13px;
 }
@@ -223,47 +286,42 @@ body {
 .result-item-rank {
   width: 40px;
   height: 40px;
-  border-radius: 10px;
-  background: #ff3159;
-  color: white;
-  font-weight: 900;
 
   display: flex;
-  justify-content: center;
+
   align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  color: white;
+
+  font-weight: 900;
 }
 
 .result-item-emoji {
   font-size: 30px;
 }
 
+.result-item-emoji img {
+  display: block;
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+}
+
 .return-button {
   width: 100%;
   height: 52px;
+
   margin-top: 25px;
-  border: none;
+
+  border: 0;
   border-radius: 13px;
+
   background: #ff3159;
+
   color: white;
-  font-weight: 800;
-  cursor: pointer;
-}
 
-@media (max-width: 600px) {
-  .draw-page {
-    padding-top: 40px;
-  }
-
-  .draw-intro h1 {
-    font-size: 31px;
-  }
-
-  .ticket {
-    width: 255px;
-    height: 360px;
-  }
-
-  .next-draw-button {
-    width: 255px;
-  }
+  font-weight: 900;
 }

@@ -1,30 +1,31 @@
-/*
-=================================================
-KUJI POP
-draw.js
-=================================================
-*/
-
 import {
     drawKuji
 }
 from "./api.js";
+import { renderProductImage } from "./images.js";
 
 
-let drawResults = [];
+let results = [];
 
 let currentIndex = 0;
 
 let opened = false;
 
 
-/*
-=================================================
-URL 정보
-=================================================
-*/
+const ticket =
+    document.getElementById(
+        "ticket"
+    );
 
-function getDrawParameters() {
+
+const nextButton =
+    document.getElementById(
+        "nextDrawButton"
+    );
+
+
+
+function getParameters() {
 
     const params =
         new URLSearchParams(
@@ -33,25 +34,22 @@ function getDrawParameters() {
 
 
     return {
-
         kujiId:
-            params.get("id"),
+            params.get(
+                "id"
+            ),
 
         count:
             Number(
-                params.get("count")
+                params.get(
+                    "count"
+                )
             )
-
     };
 
 }
 
 
-/*
-=================================================
-초기화
-=================================================
-*/
 
 async function initializeDraw() {
 
@@ -59,7 +57,7 @@ async function initializeDraw() {
         kujiId,
         count
     } =
-        getDrawParameters();
+        getParameters();
 
 
     if (
@@ -68,21 +66,13 @@ async function initializeDraw() {
         !count
     ) {
 
-        alert(
-            "잘못된 접근입니다."
-        );
-
         window.location.href =
-            "index.html";
+            "/";
 
         return;
 
     }
 
-
-    /*
-    ★ 여기서 서버에 추첨 요청
-    */
 
     try {
 
@@ -93,15 +83,12 @@ async function initializeDraw() {
             );
 
 
-        /*
-        서버가 확정한 결과
-        */
-
-        drawResults =
+        results =
             response.results;
 
 
-        currentIndex = 0;
+        currentIndex =
+            0;
 
 
         showTicket();
@@ -110,46 +97,37 @@ async function initializeDraw() {
 
     catch (error) {
 
-        console.error(
-            error
-        );
-
-
         alert(
-            "추첨 요청 중 문제가 발생했습니다."
+            error.message
         );
+
+
+        window.location.href =
+            `/detail.html?id=${kujiId}`;
 
     }
 
 }
 
 
-/*
-=================================================
-티켓 준비
-=================================================
-*/
 
 function showTicket() {
 
-    opened = false;
+    opened =
+        false;
 
 
-    const ticket =
-        document.getElementById(
-            "ticket"
-        );
-
-
-    const nextButton =
-        document.getElementById(
-            "nextDrawButton"
-        );
+    ticket.style.display =
+        "block";
 
 
     ticket.classList.remove(
         "open"
     );
+
+
+    nextButton.style.display =
+        "";
 
 
     nextButton.classList.remove(
@@ -158,7 +136,7 @@ function showTicket() {
 
 
     const result =
-        drawResults[
+        results[
             currentIndex
         ];
 
@@ -166,7 +144,7 @@ function showTicket() {
     document.getElementById(
         "drawProgress"
     ).textContent =
-        `${currentIndex + 1} / ${drawResults.length}`;
+        `${currentIndex + 1} / ${results.length}`;
 
 
     document.getElementById(
@@ -175,16 +153,13 @@ function showTicket() {
         result.rank;
 
 
+    renderProductImage(document.getElementById("resultEmoji"), result);
+
+
     document.getElementById(
         "resultName"
     ).textContent =
         result.name;
-
-
-    document.getElementById(
-        "resultEmoji"
-    ).textContent =
-        result.emoji;
 
 
     setRankColor(
@@ -194,30 +169,22 @@ function showTicket() {
 }
 
 
-/*
-=================================================
-티켓 클릭
-=================================================
-*/
-
-const ticket =
-    document.getElementById(
-        "ticket"
-    );
-
 
 ticket.addEventListener(
     "click",
     function() {
 
-        if (opened) {
+        if (
+            opened
+        ) {
 
             return;
 
         }
 
 
-        opened = true;
+        opened =
+            true;
 
 
         ticket.classList.add(
@@ -228,12 +195,9 @@ ticket.addEventListener(
         setTimeout(
             function() {
 
-                document
-                    .getElementById(
-                        "nextDrawButton"
-                    )
-                    .classList
-                    .add("active");
+                nextButton.classList.add(
+                    "active"
+                );
 
             },
             750
@@ -242,17 +206,6 @@ ticket.addEventListener(
     }
 );
 
-
-/*
-=================================================
-다음 결과
-=================================================
-*/
-
-const nextButton =
-    document.getElementById(
-        "nextDrawButton"
-    );
 
 
 nextButton.addEventListener(
@@ -265,7 +218,7 @@ nextButton.addEventListener(
         if (
             currentIndex
             <
-            drawResults.length
+            results.length
         ) {
 
             showTicket();
@@ -281,11 +234,6 @@ nextButton.addEventListener(
 );
 
 
-/*
-=================================================
-전체 결과
-=================================================
-*/
 
 function showSummary() {
 
@@ -303,7 +251,7 @@ function showSummary() {
         );
 
 
-    const resultList =
+    const list =
         document.getElementById(
             "resultList"
         );
@@ -314,11 +262,11 @@ function showSummary() {
     );
 
 
-    resultList.innerHTML =
+    list.innerHTML =
         "";
 
 
-    drawResults.forEach(
+    results.forEach(
         function(result) {
 
             const item =
@@ -327,46 +275,42 @@ function showSummary() {
                 );
 
 
-            item.classList.add(
-                "result-item"
-            );
+            item.className =
+                "result-item";
 
 
             item.innerHTML = `
 
                 <div
                     class="result-item-rank"
+
                     style="
                         background:
                         ${getRankColor(result.rank)};
                     "
                 >
-
                     ${result.rank}
-
                 </div>
 
 
                 <div
                     class="result-item-emoji"
                 >
-
                     ${result.emoji}
-
                 </div>
 
 
                 <strong>
-
                     ${result.rank}상
                     ${result.name}
-
                 </strong>
 
             `;
 
 
-            resultList.appendChild(
+            renderProductImage(item.querySelector(".result-item-emoji"), result, { lazy: true });
+
+            list.appendChild(
                 item
             );
 
@@ -376,13 +320,10 @@ function showSummary() {
 }
 
 
-/*
-=================================================
-등급 색상
-=================================================
-*/
 
-function getRankColor(rank) {
+function getRankColor(
+    rank
+) {
 
     const colors = {
 
@@ -404,62 +345,58 @@ function getRankColor(rank) {
     };
 
 
-    return colors[rank]
+    return (
+        colors[rank]
         ||
-        "#333";
+        "#333"
+    );
 
 }
 
 
-function setRankColor(rank) {
 
-    const rankBox =
-        document.getElementById(
-            "resultRank"
-        );
+function setRankColor(
+    rank
+) {
 
-
-    rankBox.style.background =
+    const color =
         getRankColor(
             rank
         );
 
+
+    document.getElementById(
+        "resultRank"
+    ).style.background =
+        color;
+
+
+    document.querySelector(
+        ".ticket-back"
+    ).style.borderColor =
+        color;
+
 }
 
 
-/*
-=================================================
-상세로 돌아가기
-=================================================
-*/
 
-const returnButton =
-    document.getElementById(
-        "returnDetailButton"
-    );
-
-
-returnButton.addEventListener(
+document.getElementById(
+    "returnDetailButton"
+).addEventListener(
     "click",
     function() {
 
         const {
             kujiId
         } =
-            getDrawParameters();
+            getParameters();
 
 
         window.location.href =
-            `detail.html?id=${kujiId}`;
+            `/detail.html?id=${kujiId}`;
 
     }
 );
 
-
-/*
-=================================================
-실행
-=================================================
-*/
 
 initializeDraw();

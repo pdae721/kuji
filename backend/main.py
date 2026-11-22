@@ -5,10 +5,6 @@ from fastapi import (
     HTTPException
 )
 
-from fastapi.middleware.cors import (
-    CORSMiddleware
-)
-
 from fastapi.responses import (
     FileResponse
 )
@@ -23,21 +19,37 @@ from models import (
 
 from kuji_service import (
     draw_kuji,
-    get_kuji_detail
+    get_kuji_detail,
+    get_kuji_list
 )
 
 
 # =========================================================
-# 경로 설정
+# 폴더
 # =========================================================
 
-BACKEND_DIR = Path(__file__).resolve().parent
+BACKEND_DIR = (
+    Path(__file__)
+    .resolve()
+    .parent
+)
 
-PROJECT_DIR = BACKEND_DIR.parent
+PROJECT_DIR = (
+    BACKEND_DIR
+    .parent
+)
 
-CSS_DIR = PROJECT_DIR / "css"
+CSS_DIR = (
+    PROJECT_DIR
+    /
+    "css"
+)
 
-JS_DIR = PROJECT_DIR / "js"
+JS_DIR = (
+    PROJECT_DIR
+    /
+    "js"
+)
 
 
 # =========================================================
@@ -51,52 +63,39 @@ app = FastAPI(
 
 
 # =========================================================
-# CORS
-# =========================================================
-
-app.add_middleware(
-    CORSMiddleware,
-
-    allow_origins=[
-        "*"
-    ],
-
-    allow_credentials=False,
-
-    allow_methods=[
-        "*"
-    ],
-
-    allow_headers=[
-        "*"
-    ]
-)
-
-
-# =========================================================
-# 정적 파일
+# CSS / JS
 # =========================================================
 
 app.mount(
     "/css",
+
     StaticFiles(
         directory=CSS_DIR
     ),
+
     name="css"
 )
 
 
 app.mount(
     "/js",
+
     StaticFiles(
         directory=JS_DIR
     ),
+
     name="js"
+)
+
+app.mount(
+    "/images",
+    StaticFiles(directory=PROJECT_DIR / "images"),
+    name="images"
 )
 
 
 # =========================================================
-# 프론트 페이지
+# 프론트
 # =========================================================
 
 @app.get("/")
@@ -109,7 +108,9 @@ async def home():
     )
 
 
-@app.get("/detail.html")
+@app.get(
+    "/detail.html"
+)
 async def detail_page():
 
     return FileResponse(
@@ -119,7 +120,9 @@ async def detail_page():
     )
 
 
-@app.get("/draw.html")
+@app.get(
+    "/draw.html"
+)
 async def draw_page():
 
     return FileResponse(
@@ -130,23 +133,42 @@ async def draw_page():
 
 
 # =========================================================
-# 서버 상태
+# Health
 # =========================================================
 
-@app.get("/health")
+@app.get(
+    "/api/health"
+)
 async def health():
 
     return {
-        "status": "ok",
-        "service": "KUJI POP API"
+        "status":
+            "ok",
+
+        "service":
+            "KUJI POP API"
     }
 
 
 # =========================================================
-# 쿠지 상세 API
+# 상품 목록
 # =========================================================
 
-@app.get("/kuji/{kuji_id}")
+@app.get(
+    "/api/kuji"
+)
+async def kuji_list():
+
+    return get_kuji_list()
+
+
+# =========================================================
+# 상품 상세
+# =========================================================
+
+@app.get(
+    "/api/kuji/{kuji_id}"
+)
 async def kuji_detail(
     kuji_id: str
 ):
@@ -157,6 +179,7 @@ async def kuji_detail(
             kuji_id
         )
 
+
     except ValueError as error:
 
         raise HTTPException(
@@ -166,22 +189,23 @@ async def kuji_detail(
 
 
 # =========================================================
-# 추첨 API
+# 추첨
 # =========================================================
 
-@app.post("/draw")
+@app.post(
+    "/api/draw"
+)
 async def draw(
     request: DrawRequest
 ):
 
     try:
 
-        result = await draw_kuji(
+        return await draw_kuji(
             request.kujiId,
             request.count
         )
 
-        return result
 
     except ValueError as error:
 

@@ -1,456 +1,249 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>KUJI POP - 상세</title>
+  <meta charset="UTF-8">
 
-  <link rel="stylesheet" href="css/common.css" />
-  <link rel="stylesheet" href="css/detail.css" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>KUJI POP - 상품 상세</title>
+
+  <link
+    rel="stylesheet"
+    href="/css/common.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/css/detail.css"
+  >
+
 </head>
 
 <body>
 
-  <header class="site-header">
 
-    <div class="header-inner">
+<header class="site-header">
 
-      <a href="index.html" class="logo">
-        KUJI
-        <span>POP</span>
-      </a>
+  <div class="header-inner">
 
-      <nav class="main-nav">
-        <a href="index.html">홈</a>
-        <a href="#">이용방법</a>
-        <a href="#">공지사항</a>
-        <a href="#">마이페이지</a>
-      </nav>
+    <a href="/" class="logo">
+      KUJI <span>POP</span>
+    </a>
 
-      <div class="header-actions">
+    <nav class="main-nav">
+      <a href="/">홈</a>
+      <a href="/#saleSection">판매중</a>
+      <a href="/#howSection">이용방법</a>
+    </nav>
 
-        <button
-          type="button"
-          class="search-button"
-        >
-          🔍
-        </button>
+  </div>
 
-        <button
-          type="button"
-          class="login-button"
-        >
-          로그인
-        </button>
+</header>
 
+
+<main class="detail-page">
+
+  <button
+    type="button"
+    class="back-button"
+    id="detailBack"
+  >
+    ← 목록으로
+  </button>
+
+
+  <section class="detail-top">
+
+    <div
+      class="detail-image-area"
+      id="detailImageArea"
+    >
+
+      <span class="sale-badge">
+        판매중
+      </span>
+
+      <div
+        class="main-prize-image"
+        id="mainPrizeImage"
+      >
+        🎁
       </div>
 
     </div>
 
-  </header>
 
+    <div class="detail-info">
 
+      <span class="detail-category">
+        CHARACTER KUJI
+      </span>
 
-  <main class="detail-page">
+      <h1 id="kujiTitle">
+        상품 정보를 불러오는 중...
+      </h1>
 
-    <button
-      type="button"
-      class="back-button"
-      id="detailBack"
-    >
-      ← 목록으로
-    </button>
+      <p class="detail-description">
+        현재 남아 있는 경품 재고 중에서
+        실제 티켓을 무작위로 추첨합니다.
+      </p>
 
 
-    <section class="detail-top">
-
-      <div class="detail-image-area">
-
-        <span class="sale-badge">
-          판매중
-        </span>
-
-        <div class="main-prize-image">
-          ★
-        </div>
-
-      </div>
-
-
-      <div class="detail-info">
-
-        <span class="detail-category">
-          CHARACTER KUJI
-        </span>
-
-        <h1 id="kujiTitle">
-          몽글몽글 친구들
-          <br />
-          Sweet Party
-        </h1>
-
-        <p class="detail-description">
-          포근한 파티를 테마로 한 온라인 쿠지입니다.
-          A상부터 다양한 경품을 만나보세요.
-        </p>
-
-
-        <div class="detail-price-row">
-
-          <span>
-            1회 가격
-          </span>
-
-          <strong id="pricePerDraw">
-            8,000원
-          </strong>
-
-        </div>
-
-
-        <div class="detail-stock">
-
-          <div class="stock-text">
-
-            <div>
-              <span>
-                남은 수량
-              </span>
-
-              <strong id="remainingCount">
-                42
-              </strong>
-            </div>
-
-            <span id="totalStockText">
-              / 80
-            </span>
-
-          </div>
-
-
-          <div class="stock-bar">
-
-            <div
-              class="stock-fill"
-              id="detailStockValue"
-              style="width: 52.5%;"
-            >
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <section class="prize-section">
-
-      <div class="section-heading">
-
-        <div>
-
-          <span class="section-eyebrow">
-            PRIZE LIST
-          </span>
-
-          <h2>
-            경품 목록
-          </h2>
-
-        </div>
-
-      </div>
-
-
-      <div class="prize-list">
-
-
-        <article class="prize-item">
-
-          <div class="prize-rank rank-a">
-            A
-          </div>
-
-          <div class="prize-image">
-            🧸
-          </div>
-
-          <div class="prize-info">
-
-            <strong>
-              A상
-            </strong>
-
-            <h3>
-              빅 사이즈 인형
-            </h3>
-
-            <p>
-              약 40cm
-            </p>
-
-          </div>
-
-          <div class="prize-stock">
-            <span>남음</span>
-            <strong>1</strong>
-          </div>
-
-        </article>
-
-
-        <article class="prize-item">
-
-          <div class="prize-rank rank-b">
-            B
-          </div>
-
-          <div class="prize-image">
-            ☕
-          </div>
-
-          <div class="prize-info">
-
-            <strong>
-              B상
-            </strong>
-
-            <h3>
-              머그컵 세트
-            </h3>
-
-            <p>
-              2종 중 랜덤
-            </p>
-
-          </div>
-
-          <div class="prize-stock">
-            <span>남음</span>
-            <strong>3</strong>
-          </div>
-
-        </article>
-
-
-        <article class="prize-item">
-
-          <div class="prize-rank rank-c">
-            C
-          </div>
-
-          <div class="prize-image">
-            👜
-          </div>
-
-          <div class="prize-info">
-
-            <strong>
-              C상
-            </strong>
-
-            <h3>
-              미니 파우치
-            </h3>
-
-            <p>
-              3종 중 랜덤
-            </p>
-
-          </div>
-
-          <div class="prize-stock">
-            <span>남음</span>
-            <strong>7</strong>
-          </div>
-
-        </article>
-
-
-        <article class="prize-item">
-
-          <div class="prize-rank rank-d">
-            D
-          </div>
-
-          <div class="prize-image">
-            🥄
-          </div>
-
-          <div class="prize-info">
-
-            <strong>
-              D상
-            </strong>
-
-            <h3>
-              디저트 스푼
-            </h3>
-
-            <p>
-              4종 중 랜덤
-            </p>
-
-          </div>
-
-          <div class="prize-stock">
-            <span>남음</span>
-            <strong>12</strong>
-          </div>
-
-        </article>
-
-
-        <article class="prize-item">
-
-          <div class="prize-rank rank-e">
-            E
-          </div>
-
-          <div class="prize-image">
-            🎀
-          </div>
-
-          <div class="prize-info">
-
-            <strong>
-              E상
-            </strong>
-
-            <h3>
-              아크릴 키링
-            </h3>
-
-            <p>
-              5종 중 랜덤
-            </p>
-
-          </div>
-
-          <div class="prize-stock">
-            <span>남음</span>
-            <strong>19</strong>
-          </div>
-
-        </article>
-
-
-        <article class="prize-item last-one">
-
-          <div class="prize-rank rank-last">
-            LAST
-          </div>
-
-          <div class="prize-image">
-            👑
-          </div>
-
-          <div class="prize-info">
-
-            <strong>
-              라스트원상
-            </strong>
-
-            <h3>
-              스페셜 컬러 인형
-            </h3>
-
-            <p>
-              마지막 티켓 구매자에게 지급
-            </p>
-
-          </div>
-
-        </article>
-
-      </div>
-
-    </section>
-
-
-
-    <section class="draw-option-section">
-
-      <h2>
-        몇 번 뽑을까요?
-      </h2>
-
-
-      <div class="draw-count">
-
-        <button
-          type="button"
-          class="count-button active"
-          data-count="1"
-        >
-          1회
-        </button>
-
-        <button
-          type="button"
-          class="count-button"
-          data-count="3"
-        >
-          3회
-        </button>
-
-        <button
-          type="button"
-          class="count-button"
-          data-count="5"
-        >
-          5회
-        </button>
-
-        <button
-          type="button"
-          class="count-button"
-          data-count="10"
-        >
-          10회
-        </button>
-
-      </div>
-
-
-      <div class="payment-row">
+      <div class="detail-price-row">
 
         <span>
-          결제 예정 금액
+          1회 가격
         </span>
 
-        <strong id="totalPrice">
-          8,000원
+        <strong id="pricePerDraw">
+          -
         </strong>
 
       </div>
 
 
+      <div class="detail-stock">
+
+        <div class="stock-text">
+
+          <div>
+            <span>
+              남은 수량
+            </span>
+
+            <strong id="remainingCount">
+              -
+            </strong>
+          </div>
+
+          <span id="totalStockText">
+            / -
+          </span>
+
+        </div>
+
+
+        <div class="stock-bar">
+
+          <div
+            class="stock-fill"
+            id="detailStockValue"
+          >
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="prize-section">
+
+    <div class="section-heading">
+
+      <div>
+        <span class="section-eyebrow">
+          PRIZE LIST
+        </span>
+
+        <h2>
+          경품 목록
+        </h2>
+      </div>
+
+    </div>
+
+
+    <div
+      class="prize-list"
+      id="prizeList"
+    >
+      <!-- detail.js -->
+    </div>
+
+  </section>
+
+
+  <section class="draw-option-section">
+
+    <h2>
+      몇 번 뽑을까요?
+    </h2>
+
+
+    <div
+      class="draw-count"
+      id="drawCount"
+    >
+
       <button
-        type="button"
-        class="detail-draw-button"
-        id="detailDrawButton"
+        class="count-button active"
+        data-count="1"
       >
-        1회 뽑기
+        1회
       </button>
 
-    </section>
+      <button
+        class="count-button"
+        data-count="3"
+      >
+        3회
+      </button>
 
-  </main>
+      <button
+        class="count-button"
+        data-count="5"
+      >
+        5회
+      </button>
+
+      <button
+        class="count-button"
+        data-count="10"
+      >
+        10회
+      </button>
+
+    </div>
 
 
+    <div class="payment-row">
 
-  <script
-    type="module"
-    src="js/detail.js"
-  >
-  </script>
+      <span>
+        결제 예정 금액
+      </span>
+
+      <strong id="totalPrice">
+        -
+      </strong>
+
+    </div>
+
+
+    <button
+      type="button"
+      class="detail-draw-button"
+      id="detailDrawButton"
+    >
+      뽑기
+    </button>
+
+  </section>
+
+</main>
+
+
+<script
+  type="module"
+  src="/js/detail.js">
+</script>
 
 </body>
 </html>
