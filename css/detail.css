@@ -185,6 +185,75 @@
   background: white;
 }
 
+.odds-heading {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.odds-heading h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.odds-heading span,
+.odds-description,
+.odds-rounding {
+  color: #555;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.rank-odds {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr));
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.odds-card {
+  padding: 16px;
+  border: 1px solid #e6e6e6;
+  border-radius: 14px;
+  background: #fafafa;
+}
+
+.odds-probability {
+  display: block;
+  margin: 8px 0 6px;
+  font-size: 24px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.odds-card small {
+  color: #555;
+  font-size: 12px;
+}
+
+.odds-bar {
+  height: 6px;
+  margin-top: 12px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #e6e6e6;
+}
+
+.odds-bar > div {
+  height: 100%;
+  border-radius: inherit;
+}
+
+.odds-rounding {
+  margin: 12px 0 24px;
+}
+
+.odds-empty {
+  grid-column: 1 / -1;
+  color: #555;
+}
+
 .prize-list {
   display: flex;
 

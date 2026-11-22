@@ -12,7 +12,7 @@ from pathlib import Path
 # =========================================================
 
 BASE_DIR = Path(__file__).resolve().parent
-STOCK_FILE = BASE_DIR / "stock.json"
+STOCK_FILE = Path(os.environ.get("KUJI_STOCK_FILE", str(BASE_DIR / "stock.json")))
 
 
 # =========================================================
@@ -47,7 +47,7 @@ def load_stock():
 
 def save_stock(data):
     fd, temp_path = tempfile.mkstemp(
-        dir=BASE_DIR,
+        dir=STOCK_FILE.parent,
         prefix="stock_",
         suffix=".tmp"
     )

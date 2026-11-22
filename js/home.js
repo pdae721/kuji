@@ -3,6 +3,35 @@ import {
 }
 from "./api.js";
 import { renderProductImage } from "./images.js";
+import { filterKujiList } from "./catalog-utils.js";
+
+let allItems = [];
+const searchInput = document.getElementById("kujiSearch");
+const statusSelect = document.getElementById("kujiStatus");
+const resultCount = document.getElementById("catalogResultCount");
+const resetButton = document.getElementById("resetFilters");
+
+function applyFilters() {
+    const items = filterKujiList(allItems, searchInput.value, statusSelect.value);
+    renderKujiList(items);
+    resultCount.textContent = `전체 ${allItems.length}개 중 ${items.length}개 상품`;
+    if (items.length === 0) {
+        const empty = document.createElement("p");
+        empty.className = "catalog-empty";
+        empty.textContent = "조건에 맞는 상품이 없습니다. 다른 검색어를 입력하거나 초기화해 보세요.";
+        grid.appendChild(empty);
+    }
+}
+
+searchInput.addEventListener("input", applyFilters);
+statusSelect.addEventListener("change", applyFilters);
+document.getElementById("catalogFilters").addEventListener("submit", (event) => event.preventDefault());
+resetButton.addEventListener("click", () => {
+    searchInput.value = "";
+    statusSelect.value = "all";
+    applyFilters();
+    searchInput.focus();
+});
 
 
 const grid =
@@ -43,9 +72,11 @@ async function initializeHome() {
             await getKujiList();
 
 
-        renderKujiList(
-            items
-        );
+        allItems = items;
+        searchInput.disabled = false;
+        statusSelect.disabled = false;
+        resetButton.disabled = false;
+        applyFilters();
 
     }
 
@@ -54,6 +85,8 @@ async function initializeHome() {
         console.error(
             error
         );
+
+        resultCount.textContent = "상품을 불러오지 못했습니다. 페이지를 새로고침해 주세요.";
 
 
         grid.innerHTML = `

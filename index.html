@@ -112,6 +112,23 @@
     </div>
 
 
+    <form class="catalog-filters" id="catalogFilters" role="search" aria-label="쿠지 상품 검색">
+      <div class="catalog-search">
+        <label for="kujiSearch">상품명 검색</label>
+        <input type="search" id="kujiSearch" placeholder="예: 할로윈, 인어섬, 해피 드라이브" disabled>
+      </div>
+      <div class="catalog-status">
+        <label for="kujiStatus">판매 상태</label>
+        <select id="kujiStatus" disabled>
+          <option value="all">전체 상품</option>
+          <option value="available">판매중</option>
+          <option value="sold-out">품절</option>
+        </select>
+      </div>
+      <button type="button" id="resetFilters" disabled>초기화</button>
+    </form>
+    <p class="catalog-result-count" id="catalogResultCount" role="status" aria-live="polite" aria-atomic="true">상품을 불러오는 중...</p>
+
     <div
       class="kuji-grid"
       id="kujiGrid"

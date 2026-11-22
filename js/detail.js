@@ -3,6 +3,7 @@ import {
 }
 from "./api.js";
 import { renderProductImage } from "./images.js";
+import { buildRankOdds, getProbability } from "./catalog-utils.js";
 
 
 let currentKuji = null;
@@ -124,6 +125,8 @@ function renderDetail() {
 
     renderPrizes();
 
+    renderOdds();
+
     updateCountButtons();
 
     updatePrice();
@@ -189,7 +192,7 @@ function renderPrizes() {
                     </h3>
 
                     <p>
-                        현재 재고 기준
+                        1회 당첨 확률 ${getProbability(prize.remaining, currentKuji.remainingStock).toFixed(2)}%
                     </p>
 
                 </div>
@@ -222,6 +225,39 @@ function renderPrizes() {
 }
 
 
+
+function renderOdds() {
+    const container = document.getElementById("rankOdds");
+    container.replaceChildren();
+    const odds = buildRankOdds(currentKuji.prizes, currentKuji.remainingStock);
+    if (currentKuji.remainingStock === 0) {
+        const message = document.createElement("p");
+        message.className = "odds-empty";
+        message.textContent = "모든 경품이 품절되어 현재 추첨할 수 없습니다.";
+        container.appendChild(message);
+        return;
+    }
+    for (const item of odds) {
+        const card = document.createElement("div");
+        card.className = "odds-card";
+        const rank = document.createElement("strong");
+        rank.textContent = `${item.rank}상`;
+        const probability = document.createElement("span");
+        probability.className = "odds-probability";
+        probability.textContent = `${item.probability.toFixed(2)}%`;
+        const stock = document.createElement("small");
+        stock.textContent = `${item.remaining}개 / 전체 ${currentKuji.remainingStock}개`;
+        const bar = document.createElement("div");
+        bar.className = "odds-bar";
+        bar.setAttribute("aria-hidden", "true");
+        const fill = document.createElement("div");
+        fill.className = `rank-${item.rank.toLowerCase()}`;
+        fill.style.width = `${item.probability}%`;
+        bar.appendChild(fill);
+        card.append(rank, probability, stock, bar);
+        container.appendChild(card);
+    }
+}
 
 function setupCountButtons() {
 

@@ -190,6 +190,77 @@
   padding: 0 24px 90px;
 }
 
+.catalog-filters {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 20px;
+  border: 1px solid #e6e6e6;
+  border-radius: 18px;
+  background: white;
+}
+
+.catalog-search {
+  flex: 1 1 260px;
+  min-width: 0;
+}
+
+.catalog-status {
+  flex: 0 1 160px;
+}
+
+.catalog-filters label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.catalog-filters input,
+.catalog-filters select,
+.catalog-filters button {
+  min-height: 46px;
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background: white;
+  color: #333;
+  font: inherit;
+  font-size: 16px;
+}
+
+.catalog-filters input,
+.catalog-filters select {
+  width: 100%;
+}
+
+.catalog-filters button:hover {
+  background: #fff1f4;
+}
+
+.catalog-filters :focus-visible {
+  outline: 3px solid #be2141;
+  outline-offset: 3px;
+}
+
+.catalog-result-count {
+  margin: 16px 0;
+  color: #555;
+  font-size: 14px;
+}
+
+.catalog-empty {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 48px 24px;
+  border-radius: 18px;
+  background: white;
+  color: #555;
+  text-align: center;
+  line-height: 1.7;
+}
+
 .kuji-grid {
   display: grid;
 

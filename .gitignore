@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+.venv/
+.local-tools/
+.aws/
+*.pem
+*.key
+backend/stock_*.tmp
