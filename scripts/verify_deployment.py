@@ -10,6 +10,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("base_url")
 parser.add_argument("--output", default="docs/evidence/deployment-http.json")
 parser.add_argument("--draw", action="store_true")
+parser.add_argument("--executor", default="CLI operator (unspecified)")
 args = parser.parse_args()
 base = args.base_url.rstrip("/")
 records = []
@@ -50,7 +51,7 @@ if args.draw:
 output = Path(args.output)
 output.parent.mkdir(parents=True, exist_ok=True)
 output.write_text(json.dumps({"executed_at_utc": datetime.now(timezone.utc).isoformat(),
-                              "base_url": base, "executor": "Codex agent or recorded CLI operator",
+                              "base_url": base, "executor": args.executor,
                               "records": records}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 print(f"{sum(r['passed'] for r in records)}/{len(records)} checks passed; evidence: {output}")
 raise SystemExit(0 if all(r["passed"] for r in records) else 1)

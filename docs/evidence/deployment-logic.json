@@ -1,0 +1,136 @@
+{
+  "executed_at_utc": "2026-11-22T12:13:09.176Z",
+  "executor": "Codex",
+  "base_url": "http://43.203.143.246",
+  "method": "CLI logic checks using live API data and hash-verified deployed JavaScript; not browser UI",
+  "deployed_js_sha256": "1a573ec6a5339b7bb982016218fc493f2e3e8665feea48fc32924370393fc6df",
+  "records": [
+    {
+      "feature": "search",
+      "input": "인어섬",
+      "result": [
+        "mermaid-movie"
+      ],
+      "passed": true
+    },
+    {
+      "feature": "search-boundary",
+      "input": "없는상품",
+      "result": [],
+      "passed": true
+    },
+    {
+      "feature": "rank-odds",
+      "input": {
+        "product": "happy-drive",
+        "remaining": 22
+      },
+      "result": [
+        {
+          "rank": "A",
+          "remaining": 1,
+          "probability": 4.545454545454546
+        },
+        {
+          "rank": "B",
+          "remaining": 2,
+          "probability": 9.090909090909092
+        },
+        {
+          "rank": "C",
+          "remaining": 9,
+          "probability": 40.909090909090914
+        },
+        {
+          "rank": "D",
+          "remaining": 10,
+          "probability": 45.45454545454545
+        }
+      ],
+      "sum": 100,
+      "passed": true
+    },
+    {
+      "feature": "rank-odds",
+      "input": {
+        "product": "mermaid-movie",
+        "remaining": 62
+      },
+      "result": [
+        {
+          "rank": "A",
+          "remaining": 1,
+          "probability": 1.6129032258064515
+        },
+        {
+          "rank": "B",
+          "remaining": 2,
+          "probability": 3.225806451612903
+        },
+        {
+          "rank": "C",
+          "remaining": 29,
+          "probability": 46.774193548387096
+        },
+        {
+          "rank": "D",
+          "remaining": 20,
+          "probability": 32.25806451612903
+        },
+        {
+          "rank": "E",
+          "remaining": 10,
+          "probability": 16.129032258064516
+        }
+      ],
+      "sum": 100,
+      "passed": true
+    },
+    {
+      "feature": "rank-odds",
+      "input": {
+        "product": "halloween-pouch",
+        "remaining": 13
+      },
+      "result": [
+        {
+          "rank": "A",
+          "remaining": 1,
+          "probability": 7.6923076923076925
+        },
+        {
+          "rank": "B",
+          "remaining": 2,
+          "probability": 15.384615384615385
+        },
+        {
+          "rank": "C",
+          "remaining": 10,
+          "probability": 76.92307692307693
+        }
+      ],
+      "sum": 100.00000000000001,
+      "passed": true
+    },
+    {
+      "feature": "odds-boundary",
+      "input": {
+        "prizes": [],
+        "remaining": 0
+      },
+      "result": {
+        "probability": 0,
+        "ranks": []
+      },
+      "passed": true
+    },
+    {
+      "feature": "deployed-images",
+      "result": {
+        "checked": 18,
+        "status": 200
+      },
+      "passed": true
+    }
+  ]
+}

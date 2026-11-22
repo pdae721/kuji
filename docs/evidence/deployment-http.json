@@ -1,0 +1,360 @@
+{
+  "executed_at_utc": "2026-11-22T12:08:50.109687+00:00",
+  "base_url": "http://43.203.143.246",
+  "executor": "Codex",
+  "records": [
+    {
+      "case": "health",
+      "method": "GET",
+      "path": "/api/health",
+      "input": null,
+      "expected_status": 200,
+      "status": 200,
+      "result": {
+        "status": "ok",
+        "service": "KUJI POP API"
+      },
+      "passed": true
+    },
+    {
+      "case": "list-normal",
+      "method": "GET",
+      "path": "/api/kuji",
+      "input": null,
+      "expected_status": 200,
+      "status": 200,
+      "result": [
+        {
+          "id": "happy-drive",
+          "title": "먼작귀 치이카와 해피 드라이브 시리즈",
+          "price": 13500,
+          "emoji": "🚗",
+          "image": "/images/products/happy-drive/main.png",
+          "totalStock": 23,
+          "remainingStock": 23
+        },
+        {
+          "id": "mermaid-movie",
+          "title": "먼작귀 치이카와 극장판 인어섬의 비밀 봉제인형",
+          "price": 29900,
+          "emoji": "🧜‍♀️",
+          "image": "/images/products/mermaid-movie/main.png",
+          "totalStock": 63,
+          "remainingStock": 62
+        },
+        {
+          "id": "halloween-pouch",
+          "title": "먼작귀 치이카와 2026 할로윈 마스코트 동전 파우치",
+          "price": 25900,
+          "emoji": "🎃",
+          "image": "/images/products/halloween-pouch/main.png",
+          "totalStock": 13,
+          "remainingStock": 13
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case": "detail-normal",
+      "method": "GET",
+      "path": "/api/kuji/happy-drive",
+      "input": null,
+      "expected_status": 200,
+      "status": 200,
+      "result": {
+        "id": "happy-drive",
+        "title": "먼작귀 치이카와 해피 드라이브 시리즈",
+        "price": 13500,
+        "emoji": "🚗",
+        "image": "/images/products/happy-drive/main.png",
+        "totalStock": 23,
+        "remainingStock": 23,
+        "prizes": [
+          {
+            "ticketId": "HD-A-001",
+            "rank": "A",
+            "name": "우사기",
+            "emoji": "🐰",
+            "image": "/images/products/happy-drive/a-1.png",
+            "remaining": 1
+          },
+          {
+            "ticketId": "HD-B-001",
+            "rank": "B",
+            "name": "치이카와",
+            "emoji": "🤍",
+            "image": "/images/products/happy-drive/b-2.png",
+            "remaining": 2
+          },
+          {
+            "ticketId": "HD-C-001",
+            "rank": "C",
+            "name": "하치와레",
+            "emoji": "🐱",
+            "image": "/images/products/happy-drive/c-3.png",
+            "remaining": 10
+          },
+          {
+            "ticketId": "HD-D-001",
+            "rank": "D",
+            "name": "모몽가",
+            "emoji": "🪽",
+            "image": "/images/products/happy-drive/d-4.png",
+            "remaining": 10
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "case": "detail-unknown",
+      "method": "GET",
+      "path": "/api/kuji/not-a-product",
+      "input": null,
+      "expected_status": 404,
+      "status": 404,
+      "result": {
+        "detail": "존재하지 않는 쿠지입니다."
+      },
+      "passed": true
+    },
+    {
+      "case": "stock-before-invalid-draw",
+      "method": "GET",
+      "path": "/api/kuji/happy-drive",
+      "input": null,
+      "expected_status": 200,
+      "status": 200,
+      "result": {
+        "id": "happy-drive",
+        "title": "먼작귀 치이카와 해피 드라이브 시리즈",
+        "price": 13500,
+        "emoji": "🚗",
+        "image": "/images/products/happy-drive/main.png",
+        "totalStock": 23,
+        "remainingStock": 23,
+        "prizes": [
+          {
+            "ticketId": "HD-A-001",
+            "rank": "A",
+            "name": "우사기",
+            "emoji": "🐰",
+            "image": "/images/products/happy-drive/a-1.png",
+            "remaining": 1
+          },
+          {
+            "ticketId": "HD-B-001",
+            "rank": "B",
+            "name": "치이카와",
+            "emoji": "🤍",
+            "image": "/images/products/happy-drive/b-2.png",
+            "remaining": 2
+          },
+          {
+            "ticketId": "HD-C-001",
+            "rank": "C",
+            "name": "하치와레",
+            "emoji": "🐱",
+            "image": "/images/products/happy-drive/c-3.png",
+            "remaining": 10
+          },
+          {
+            "ticketId": "HD-D-001",
+            "rank": "D",
+            "name": "모몽가",
+            "emoji": "🪽",
+            "image": "/images/products/happy-drive/d-4.png",
+            "remaining": 10
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "case": "draw-invalid-count",
+      "method": "POST",
+      "path": "/api/draw",
+      "input": {
+        "kujiId": "happy-drive",
+        "count": 2
+      },
+      "expected_status": 409,
+      "status": 409,
+      "result": {
+        "detail": "1회, 3회, 5회, 10회만 선택할 수 있습니다."
+      },
+      "passed": true
+    },
+    {
+      "case": "draw-out-of-range",
+      "method": "POST",
+      "path": "/api/draw",
+      "input": {
+        "kujiId": "happy-drive",
+        "count": 11
+      },
+      "expected_status": 422,
+      "status": 422,
+      "result": {
+        "detail": [
+          {
+            "type": "less_than_equal",
+            "loc": [
+              "body",
+              "count"
+            ],
+            "msg": "Input should be less than or equal to 10",
+            "input": 11,
+            "ctx": {
+              "le": 10
+            }
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "case": "stock-after-invalid-draw",
+      "method": "GET",
+      "path": "/api/kuji/happy-drive",
+      "input": null,
+      "expected_status": 200,
+      "status": 200,
+      "result": {
+        "id": "happy-drive",
+        "title": "먼작귀 치이카와 해피 드라이브 시리즈",
+        "price": 13500,
+        "emoji": "🚗",
+        "image": "/images/products/happy-drive/main.png",
+        "totalStock": 23,
+        "remainingStock": 23,
+        "prizes": [
+          {
+            "ticketId": "HD-A-001",
+            "rank": "A",
+            "name": "우사기",
+            "emoji": "🐰",
+            "image": "/images/products/happy-drive/a-1.png",
+            "remaining": 1
+          },
+          {
+            "ticketId": "HD-B-001",
+            "rank": "B",
+            "name": "치이카와",
+            "emoji": "🤍",
+            "image": "/images/products/happy-drive/b-2.png",
+            "remaining": 2
+          },
+          {
+            "ticketId": "HD-C-001",
+            "rank": "C",
+            "name": "하치와레",
+            "emoji": "🐱",
+            "image": "/images/products/happy-drive/c-3.png",
+            "remaining": 10
+          },
+          {
+            "ticketId": "HD-D-001",
+            "rank": "D",
+            "name": "모몽가",
+            "emoji": "🪽",
+            "image": "/images/products/happy-drive/d-4.png",
+            "remaining": 10
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "case": "invalid-draw-does-not-consume-stock",
+      "before": 23,
+      "after": 23,
+      "passed": true
+    },
+    {
+      "case": "draw-normal",
+      "method": "POST",
+      "path": "/api/draw",
+      "input": {
+        "kujiId": "happy-drive",
+        "count": 1
+      },
+      "expected_status": 200,
+      "status": 200,
+      "result": {
+        "success": true,
+        "kujiId": "happy-drive",
+        "count": 1,
+        "results": [
+          {
+            "id": "HD-C-003",
+            "rank": "C",
+            "name": "하치와레",
+            "emoji": "🐱",
+            "image": "/images/products/happy-drive/c-3.png"
+          }
+        ],
+        "remainingStock": 22
+      },
+      "passed": true
+    },
+    {
+      "case": "stock-after-normal-draw",
+      "method": "GET",
+      "path": "/api/kuji/happy-drive",
+      "input": null,
+      "expected_status": 200,
+      "status": 200,
+      "result": {
+        "id": "happy-drive",
+        "title": "먼작귀 치이카와 해피 드라이브 시리즈",
+        "price": 13500,
+        "emoji": "🚗",
+        "image": "/images/products/happy-drive/main.png",
+        "totalStock": 23,
+        "remainingStock": 22,
+        "prizes": [
+          {
+            "ticketId": "HD-A-001",
+            "rank": "A",
+            "name": "우사기",
+            "emoji": "🐰",
+            "image": "/images/products/happy-drive/a-1.png",
+            "remaining": 1
+          },
+          {
+            "ticketId": "HD-B-001",
+            "rank": "B",
+            "name": "치이카와",
+            "emoji": "🤍",
+            "image": "/images/products/happy-drive/b-2.png",
+            "remaining": 2
+          },
+          {
+            "ticketId": "HD-C-001",
+            "rank": "C",
+            "name": "하치와레",
+            "emoji": "🐱",
+            "image": "/images/products/happy-drive/c-3.png",
+            "remaining": 9
+          },
+          {
+            "ticketId": "HD-D-001",
+            "rank": "D",
+            "name": "모몽가",
+            "emoji": "🪽",
+            "image": "/images/products/happy-drive/d-4.png",
+            "remaining": 10
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "case": "successful-draw-consumes-one",
+      "before": 23,
+      "after": 22,
+      "passed": true
+    }
+  ]
+}

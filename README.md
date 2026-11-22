@@ -4,7 +4,9 @@
 
 ## 배포 상태
 
-AWS 서울 리전(`ap-northeast-2`)의 단일 EC2 배포 구성입니다. **실제 배포 주소와 확인 결과는 [배포 기록](docs/DEPLOYMENT.md)에 기록합니다.** 템플릿만으로 배포 완료를 의미하지 않습니다.
+**배포 주소: [http://43.203.143.246](http://43.203.143.246)**
+
+AWS 서울 리전(`ap-northeast-2`)의 단일 EC2에서 실행 중입니다. [상태 확인 API](http://43.203.143.246/api/health), [실제 배포 기록](docs/DEPLOYMENT.md), [정상·실패 HTTP 입력과 응답](docs/evidence/deployment-http.json)을 확인할 수 있습니다. HTTP 주소이므로 일반 브라우저에서 열어 확인합니다.
 
 ## 주요 기능과 평가 증거
 
@@ -15,7 +17,7 @@ AWS 서울 리전(`ap-northeast-2`)의 단일 EC2 배포 구성입니다. **실�
 | 실제 재고 추첨 | `POST /api/draw`, `{"kujiId":"halloween-pouch","count":1}` → 경품1개·재고1 감소 | `count:2` →409, `count:11` →422, 품절·부족 →409. 실패 시 재고 유지 | `backend/models.py`, `backend/kuji_service.py`, `tests/test_api.py` |
 | 상별·캐릭터별 확률 | 남은 수량 ÷ 전체 남은 티켓 ×100. 예: A상1/20 →5% | 전체 재고0 →0%·품절 안내. NaN·무한대 방지 | `js/detail.js`, `js/catalog-utils.js`, `tests/catalog-utils.test.mjs` |
 
-실제 실행 결과는 [검증 기록](docs/VALIDATION.md)과 `docs/evidence/`에서 확인합니다. API 시험은 임시 재고를 사용합니다. 배포 검증 스크립트의 `--draw`는 배포 서버의 데모 티켓을 실제로1개 소모합니다.
+실제 실행 결과는 [검증 기록](docs/VALIDATION.md)과 `docs/evidence/`에서 확인합니다. [AWS 스택 출력 화면](docs/evidence/aws-stack.jpg), [공인 주소 HTTP 시험 12건](docs/evidence/deployment-http.json), [배포 JS·실제 데이터 기반 검색·확률 시험 7건](docs/evidence/deployment-logic.json)을 보관했습니다. API 자동 시험은 임시 재고를 사용하며 배포 검증의 `--draw`는 데모 티켓을 실제로 1개 소모합니다.
 
 ## AWS 구성도와 요청 경로
 
@@ -70,9 +72,10 @@ python -m venv .venv
 node --test tests/catalog-utils.test.mjs
 .venv\Scripts\python -m unittest discover -s tests -p test_api.py -v
 python scripts/verify_deployment.py http://배포-공인-IP --draw
+node scripts/verify_frontend.mjs http://배포-공인-IP
 ```
 
-마지막 명령은 실제 HTTP 정상 조회·없는 상품·잘못된 횟수·실패 시 재고 유지·1회 추첨 후 감소를 JSON으로 기록합니다. 검색·확률 화면은 브라우저에서도 확인합니다.
+HTTP 스크립트는 실제 정상 조회·없는 상품·잘못된 횟수·실패 시 재고 유지·1회 추첨 후 감소를 JSON으로 기록합니다. 프런트 검증 스크립트는 실제 API 데이터와 해시가 일치하는 배포 JS로 검색·확률 정상·경계 입력을 시험하고 이미지 18개를 확인합니다. 이 CLI 로직 시험은 브라우저 화면 시험을 대체하지 않습니다.
 
 ## AWS 배포 방법
 
