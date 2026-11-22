@@ -1,14 +1,8 @@
 # KUJI POP
 
-캐릭터 상품을 선택하고 남은 실제 티켓에서 무작위 경품을 뽑는 학습용 웹 서비스입니다. HTML/CSS/JavaScript와 Python FastAPI를 사용합니다. 결제·회원 인증은 구현하지 않았으며 실제 금전 거래 서비스가 아닙니다.
+상품의 정보를 확인하고 실제 남은 재고를 기준으로 뽑기를 할 수 있는 쿠지 웹 서비스입니다.
 
-## 배포 상태
-
-**배포 주소: [http://43.203.143.246](http://43.203.143.246)**
-
-AWS 서울 리전(`ap-northeast-2`)의 단일 EC2에서 실행 중입니다. [상태 확인 API](http://43.203.143.246/api/health), [실제 배포 기록](docs/DEPLOYMENT.md), [정상·실패 HTTP 입력과 응답](docs/evidence/deployment-http.json)을 확인할 수 있습니다. HTTP 주소이므로 일반 브라우저에서 열어 확인합니다.
-
-## 주요 기능과 평가 증거
+# 주요 기능과 평가 증거
 
 | 기능 | 정상 입력과 결과 | 실패 또는 경계 입력과 결과 | 구현·시험 |
 |---|---|---|---|
@@ -16,8 +10,6 @@ AWS 서울 리전(`ap-northeast-2`)의 단일 EC2에서 실행 중입니다. [�
 | 상품 검색·판매 상태 필터 | 검색 `인어섬` → 상품1개 | `없는상품` →0개와 초기화 안내. 품절 필터 → 품절 상품만 표시 | `js/home.js`, `js/catalog-utils.js`, `tests/catalog-utils.test.mjs` |
 | 실제 재고 추첨 | `POST /api/draw`, `{"kujiId":"halloween-pouch","count":1}` → 경품1개·재고1 감소 | `count:2` →409, `count:11` →422, 품절·부족 →409. 실패 시 재고 유지 | `backend/models.py`, `backend/kuji_service.py`, `tests/test_api.py` |
 | 상별·캐릭터별 확률 | 남은 수량 ÷ 전체 남은 티켓 ×100. 예: A상1/20 →5% | 전체 재고0 →0%·품절 안내. NaN·무한대 방지 | `js/detail.js`, `js/catalog-utils.js`, `tests/catalog-utils.test.mjs` |
-
-실제 실행 결과는 [검증 기록](docs/VALIDATION.md)과 `docs/evidence/`에서 확인합니다. [AWS 스택 출력 화면](docs/evidence/aws-stack.jpg), [공인 주소 HTTP 시험 12건](docs/evidence/deployment-http.json), [배포 JS·실제 데이터 기반 검색·확률 시험 7건](docs/evidence/deployment-logic.json)을 보관했습니다. API 자동 시험은 임시 재고를 사용하며 배포 검증의 `--draw`는 데모 티켓을 실제로 1개 소모합니다.
 
 ## AWS 구성도와 요청 경로
 
@@ -100,11 +92,9 @@ aws cloudformation describe-stacks --stack-name kuji-pop-demo --query 'Stacks[0]
 
 평가 후 재고·증거를 보관한 뒤 스택을 삭제해 EC2·EBS·공인 IPv4 사용을 종료합니다. **스택 삭제는 서버 재고도 삭제합니다.**
 
+AI 활용은 웹 GPT 사용
+
 ```bash
 aws cloudformation delete-stack --stack-name kuji-pop-demo --region ap-northeast-2
 aws cloudformation wait stack-delete-complete --stack-name kuji-pop-demo --region ap-northeast-2
 ```
-
-## AI 활용과 직접 검증
-
-[AI 활용 기록](docs/AI_USAGE.md)은 AI가 구현·실행한 부분과 사람이 직접 실행해야 할 부분을 구분합니다. AI 허용 범위 원문은 제공되지 않았으므로 수업 규정과 대조해야 합니다. AI가 실행한 시험을 학생이 직접 실행한 것으로 기록하지 않습니다.
