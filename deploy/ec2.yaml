@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: KUJI POP single-instance demo (EC2, EBS, public subnet; no ELB/NAT/ASG)
+Description: KUJI POP demo (CloudFront HTTPS, one EC2, EBS; no ELB/NAT/ASG)
 Parameters:
   SourceRef:
     Type: String
@@ -89,7 +89,40 @@ Resources:
           cd /opt/kuji/app
           git checkout '${SourceRef}'
           bash deploy/bootstrap.sh
+  HttpsDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        Comment: KUJI POP HTTPS demo
+        HttpVersion: http2
+        PriceClass: PriceClass_200
+        Origins:
+          - Id: KujiEc2
+            DomainName: !GetAtt WebServer.PublicDnsName
+            CustomOriginConfig:
+              HTTPPort: 80
+              OriginProtocolPolicy: http-only
+        DefaultCacheBehavior:
+          TargetOriginId: KujiEc2
+          ViewerProtocolPolicy: redirect-to-https
+          AllowedMethods: [GET, HEAD, OPTIONS, PUT, PATCH, POST, DELETE]
+          CachedMethods: [GET, HEAD]
+          Compress: true
+          MinTTL: 0
+          DefaultTTL: 0
+          MaxTTL: 0
+          ForwardedValues:
+            QueryString: true
+            Cookies:
+              Forward: none
+        ViewerCertificate:
+          CloudFrontDefaultCertificate: true
 Outputs:
+  HttpsWebsiteUrl:
+    Value: !Sub 'https://${HttpsDistribution.DomainName}'
+  DistributionId:
+    Value: !Ref HttpsDistribution
   WebsiteUrl:
     Value: !Sub 'http://${WebServer.PublicIp}'
   HealthUrl:
